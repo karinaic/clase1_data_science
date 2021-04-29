@@ -1,7 +1,5 @@
 
 class Humano:
-    pass
-
     def __init__(self, nombre, armadura, nivel, ataque, ojos =2, piernas = 2, dientes = 32,salud =100):
         self.nombre = nombre
         self.armadura = armadura
@@ -18,10 +16,22 @@ class Humano:
 
     def no_vivo(self):
         if self.salud <= 0:
-            True
+           print("sigue vivo")
+           return True
         else:
-            False
+            print("muerto")
+            return False
 
     def atributos(self):
-        out = "Nombre:" + self.name + "\nArmadura: " + str(self.armadura) + "\nNivel:" + str(self.nivel) + "Ataque: " + self.ataque + "\nOjos: " + str(self.ojos) + "\nPiernas:" + str(self.piernas) + "\nDientes: " + str(self.dientes) + "\nSalud:" + str(self.salud)
+        out = "Nombre:" + self.nombre + "\nArmadura: " + str(self.armadura) + "\nNivel:" + str(self.nivel) + "\nAtaque: " + str(self.ataque) + "\nOjos: " + str(self.ojos) + "\nPiernas:" + str(self.piernas) + "\nDientes: " + str(self.dientes) + "\nSalud:" + str(self.salud)
         return out
+
+karina = Humano(nombre = "karina", armadura= 3, nivel = 30, ataque = 6)
+print(karina.nombre)
+print(karina.armadura)
+print(karina.nivel)
+print(karina.ataque)
+
+print(karina.atributos())
+
+
