@@ -10,7 +10,7 @@ class Humano:
         self.dientes = dientes
         self.salud = salud
 
-    def atacar(self, Orco):
+    def atacar(self, orco):
         orco.salud -= self.ataque - orco.armadura
         print("La vida del orco es", orco.salud)
 

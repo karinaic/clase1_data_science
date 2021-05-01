@@ -1,6 +1,5 @@
 class Orco:
     
-
     def __init__(self, nombre, armadura, nivel, ataque, ojos = 2, piernas = 2, dientes = 56, salud = 100):
         self.nombre = nombre
         self.armadura = armadura
