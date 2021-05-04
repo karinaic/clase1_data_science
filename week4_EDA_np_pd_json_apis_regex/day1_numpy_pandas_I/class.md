@@ -4,7 +4,7 @@
 
 **Work-in:**
 
-1. Python *args, **kwargs` & global_local
+1. Python *args, **kwargs & global_local
 2. Delivery
 3. Pip Paths
 4. Matrix numpy
