@@ -1,40 +1,40 @@
 
-#Importamos librerias
+#Import libraries
 import numpy as np 
 import random
 from time import sleep
 from tqdm import tqdm
 
-#importamos módulos propios
+#Import owns scripts
 from Clases import *
 import Constantes as cs
 from time import sleep
 from tqdm import tqdm
-from Constantes import MENSAJES
+from Constantes import MESSAGES
 
 
-def posicion_random(): #crea una posición en un tablero de 10 x 10 de fila-letra
+def posicion_random(): #we make an array 10x10 of characteres and numbers lists.
 
     x = random.randint(1, 10)
-    y = cs.LISTA_CARACTERES[random.randint(0, 9)]
+    y = cs.LIST_CHARACTERS[random.randint(0, 9)]
 
     return (x, y)
 
-#interpretamos las coordenadas introducidas por el jugador
+#we interpret the coordinates entered by the player
 def lee_input(jugador, posicion): 
-    #se le pasa como parámetros un jugador y una posición. este método comprueba la validez del disparo,
-    #no debe de haber disparado en esa misma posición y 
-    # tiene que estar bien construido para que identifique una posición real del tablero
+    #A player and a position introduce them as parameters. this method checks the validity of the shot,
+    # must not have fired in that same position and
+    # has to be well constructed so that it identifies a real position on the board
 
     resp = None
 
     try:
         if len(posicion) == 3:
-            if int(posicion[0:2]) == 10 and posicion[2].upper() in cs.LISTA_CARACTERES:
+            if int(posicion[0:2]) == 10 and posicion[2].upper() in cs.LIST_CHARACTERS:
                 resp = (int(posicion[0:2]), posicion[2].upper())
 
         elif len(posicion) == 2:
-            if int(posicion[0]) > 0 and int(posicion[0]) < 10 and posicion[1].upper() in cs.LISTA_CARACTERES:
+            if int(posicion[0]) > 0 and int(posicion[0]) < 10 and posicion[1].upper() in cs.LIST_CHARACTERS:
                 resp = (int(posicion[0]), posicion[1].upper())
 
         elif posicion == "0":
@@ -42,7 +42,7 @@ def lee_input(jugador, posicion):
             resp = 0
 
         if resp in jugador.disparos:
-            print("Ya has disparado en esta posicion")
+            print("Sorry, You have already shot in this position")
             resp = None
 
         return resp
@@ -53,54 +53,54 @@ es_maquina = False
 
 salir = False
 
-#nuestros jugadores
-#llamamos a la clase Jugador
+#our players
+#calling Jugador Class
 jugador_1 = Jugador()
 
 jugador_2 = Jugador()
 
-#introducimos mensaje Bienvenida
+#we introduce welcome message
 
-print(MENSAJES["introduccion"])
-
-sleep(0.5)
-
-#introduciomos los símbolos a los que hacer referencia las marcas en el tablero
-
-print("Los símbolos '~' hacen referncia al agua")
+print(MESSAGES["introduction"])
 
 sleep(0.5)
 
-print("El símbolo 'Ø' hace referencia a un disparo fallido")
+# we introduce the symbols to which the marks refer on the board
+
+print("The symbols '~' refer to water")
 
 sleep(0.5)
 
-print("El símbolo 'X' hace referencia a un barco tocado")
+print("The 'Ø' symbol refers to a miss shot")
 
 sleep(0.5)
 
-#introducimos las reglas del juego
-print(MENSAJES["reglas"])
+print("The symbol 'X' refers to hit ship")
 
 sleep(0.5)
 
-print("           ARE YOU READY????....CARGANDO...\n ")
+# we introduce the rules of the game
+print(MESSAGES["Rules"])
+
+sleep(0.5)
+
+print("           ARE YOU READY????....CHARGING...\n ")
 for i in tqdm(range(10)):
     sleep(0.5)
 
-input("Presiona enter para continuar")
+input("Press enter to continue")
 
 #instanciamos el juego
 
-while jugador_1.vidas > 0 and jugador_2.vidas > 0 : #comprobamos que alguno de los dos aun tiene vidas
+while jugador_1.vidas > 0 and jugador_2.vidas > 0 :# We check that one of us still has lives
     
     if not es_maquina:
         jugador_1.imprimir_tablero()
         
         while True:
-            print("Si deseas abandonar el juego sólo tienes que presionar = 0")
-            posicion = str(input("Introduzca la coordenada a la que desea diparar: filas de 1 a 10 y columnas de A - J  \
-                \nEjemplo: 1A ------->Intentelo aquí:  "))
+            print("If you want to quit the game you just have to press = 0")
+            posicion = str(input("Enter the coordinate to which you want to dip: rows from 1 to 10 and columns from A - J  \
+                \nExample: 1A -------> Try it here: "))
 
             tupla_posicion = lee_input(jugador_1, posicion) #llamamos a la funcion que nos devuelve el imput con la coordenada ingresada por el jugador
 
@@ -109,9 +109,9 @@ while jugador_1.vidas > 0 and jugador_2.vidas > 0 : #comprobamos que alguno de l
                 break
 
             else:
-                print ("Entrada no válida")
+                print ("unvalid entry, Try again")
 
-        if tupla_posicion == 0: #se acaba el juego, no se quiere seguir jugando
+        if tupla_posicion == 0: #the game is over, you don't want to continue playing
 
             salir = True
 
@@ -125,16 +125,16 @@ while jugador_1.vidas > 0 and jugador_2.vidas > 0 : #comprobamos que alguno de l
 
             if jugador_2.vidas != 0:
 
-                print("¡HAS ACERTADO!, te toca tirar de nuevo")
+                print("¡YOU'RE SUCCESSFUL! It's your turn to shoot again")
 
         else:
 
-            print("No has acertado, pasa el turno a tú oponente: ")
+            print("You were not correct, pass the turn to your opponent:")
 
             es_maquina = True
 
     else:
-        print("Turno del oponente")
+        print("Opponent's turn")
 
         apuntar = False
 
@@ -146,7 +146,7 @@ while jugador_1.vidas > 0 and jugador_2.vidas > 0 : #comprobamos que alguno de l
 
                 apuntar =True
 
-        print("Tú oponente está apuntando a: ", tupla_posicion)
+        print("Your opponent is targeting: ", tupla_posicion)
 
         resultado = jugador_2.disparar(tupla_posicion, jugador_1)
 
@@ -155,12 +155,12 @@ while jugador_1.vidas > 0 and jugador_2.vidas > 0 : #comprobamos que alguno de l
 
         if not resultado:
 
-            print(MENSAJES["fallo"] +" se pasa el turno al jugador: ")
+            print(MESSAGES["Miss"] +" the turn is passed to the player: ")
 
             es_maquina = False
 
         else:
-            print(MENSAJES["blanco"] + " le toca tirar de nuevo")
+            print(MESSAGES["Hit"] + " shoot again")
 
             es_maquina = True
 
@@ -168,12 +168,12 @@ while jugador_1.vidas > 0 and jugador_2.vidas > 0 : #comprobamos que alguno de l
 
 if es_maquina and not salir:
 
-    print(MENSAJES["perder"])
+    print(MESSAGES["lose"])
 
 elif not es_maquina and not salir:
 
-    print(MENSAJES["ganar"])
+    print(MESSAGES["win"])
 
 elif salir:
 
-    print(MENSAJES["adios"])
+    print(MESSAGES["goodbye"])

@@ -1,16 +1,17 @@
-##Aqui voy a modelizar mis clases: Tablero , Jugador
-#importo librerias necesarias
+#Here I am going to model my classes: Board, Player
+# import necessary libraries
 import numpy as np
 import random
 
-#importo módulos propios
+# I import my own modules
 import Constantes as cs
 
 
 
 class Barco:
-    # Para construir el objeto Barco se le pasan los parámetros tupla posición,
-    # el largo del barco y la propiedad axis que hace referencia a la disposición del barco en el eje x o en el eje y
+    # To build the Boat object, we give it the tuple position parameters,
+    # the length of the ship and the axis property that refers to the position of the ship in the x-axis or in the y-axis.
+
 
     def __init__(self, posicion, largo, axis = 0):#axis == 0 Vertical, axis == 1 Horizontal
 
@@ -19,9 +20,10 @@ class Barco:
         self.axis = axis
 
 class Jugador:
-    ##esta formado por dos tableros, uno para los disparos y otro para los barcos, 
-    #una propiedad de vidas que representa el número de disparos que hay que hacer para hundir todos los barcos, 
-    # y una lista de disparos, que almacena los disparos que ha realizado el jugador.
+    #is made up of two boards, one for the shots and the other for the ships, 
+    #a lives property that represents the number of shots to be fired to sink all the ships, 
+    # and a shot list, which stores the shots the player has fired.
+
 
     def __init__(self):
 
@@ -31,15 +33,15 @@ class Jugador:
         self.vidas = 20
         self.disparos = []
 
-    def imprimir_tablero(self): #printa los tableros
-        titulo = np.array(cs.LISTA_CARACTERES) # pintamos las columnas de las pantallas de los jugadores
+    def imprimir_tablero(self): #print the boards
+        titulo = np.array(cs.LIST_CHARACTERS) # we display the columns of the player's screens
         print("  ",titulo, "           ",titulo)
         print("")
-        for i in range(len(cs.LISTA_NUMEROS)): #pintamos las filas de los tableros
+        for i in range(len(cs.LIST_NUMBERS)): # we display the rows of the board
             if i != 9:
-                numero = str(cs.LISTA_NUMEROS[i]) + " "
+                numero = str(cs.LIST_NUMBERS[i]) + " "
             else:
-                numero = str(cs.LISTA_NUMEROS[i])
+                numero = str(cs.LIST_NUMBERS[i])
 
             print(numero, self.tablero_barcos.matriz[i],
                   "        ", numero, self.tablero_disparos.matriz[i])
@@ -48,19 +50,20 @@ class Jugador:
 
 
     def disparar(self, posicion, a_jugador): 
-        #como parámetros se le pasa la posición a la que se dispara y el jugador al que se dispara. 
-        # Comprueba si se ha acertado y en ese caso resta la variable vida del jugador afectado
+        # as parameters, we enter the position to shoot at and the player to shoot at. 
+        # checks to see if the boat has been hit and if the player was successful, it subtracts a life variable of the affected player.
 
-        self.disparos.append(posicion) #guardo la posicion en la lista de disparos vacia
+
+        self.disparos.append(posicion) # I keep the position in the empty shot list.
 
         posicion_traducida = self.traducir_posicion(posicion)
 
 
-        if a_jugador.tablero_barcos.matriz[posicion_traducida[0], posicion_traducida[1]] == cs.BARCO_CHAR:
+        if a_jugador.tablero_barcos.matriz[posicion_traducida[0], posicion_traducida[1]] == cs.BOAT_BOARD:
 
-            self.tablero_disparos.matriz[posicion_traducida[0], posicion_traducida[1]] = cs.TOCADO_CHAR
+            self.tablero_disparos.matriz[posicion_traducida[0], posicion_traducida[1]] = cs.HIT_BOARD
 
-            a_jugador.tablero_barcos.matriz[posicion_traducida[0], posicion_traducida[1]] = cs.TOCADO_CHAR
+            a_jugador.tablero_barcos.matriz[posicion_traducida[0], posicion_traducida[1]] = cs.HIT_BOARD
 
             a_jugador.vidas -= 1
 
@@ -68,31 +71,31 @@ class Jugador:
 
         else:
 
-            self.tablero_disparos.matriz[posicion_traducida[0], posicion_traducida[1]] = cs.FALLO_CHAR
+            self.tablero_disparos.matriz[posicion_traducida[0], posicion_traducida[1]] = cs.MISS_BOARD
 
-            a_jugador.tablero_barcos.matriz[posicion_traducida[0], posicion_traducida[1]] = cs.FALLO_CHAR
+            a_jugador.tablero_barcos.matriz[posicion_traducida[0], posicion_traducida[1]] = cs.MISS_BOARD
 
             return False
 
-    def traducir_posicion(self, posicion): #se pasa como parámetro la posición numero letra que pasa el jugador y se traduce para leer en la matriz
+    def traducir_posicion(self, posicion): # the number-letter parameter the player enters is passed and is translated to be read in the array
 
-        x = posicion[0] - 1  #le restamos uno porque empieza en cero.
+        x = posicion[0] - 1 #we subtract one because it starts at zero.
 
-        y = cs.LISTA_CARACTERES.index(posicion[1]) #con el index.devuelve el índice del elemento dado en la lista.
+        y = cs.LIST_CHARACTERS.index(posicion[1]) #with the index.returns the index of the element given in the list.
 
         return (x, y)
 
 
-class Tablero: #definimos la posicion de los barcos de manera aleatoria, se esperaba pasar una lista con  coordenada, pero no hemos conseguido implementarlo.
+class Tablero: #we define the position of the boats randomly, we had planned to pass a list with coordinates, but we were not able to implement it.
 
-    def __init__(self, dimension, barcos=[]):  #posicionamos los barcos en el tablero
+    def __init__(self, dimension, barcos=[]):  #we position the ships on the board
 
         self.dimension = dimension
-        self.matriz = np.full((dimension, dimension), cs.AGUA_CHAR)
+        self.matriz = np.full((dimension, dimension), cs.WATER_BOARD )
         self.barcos = barcos
 
     def posicion_random(self):
-        #crea una posición dentro del tablero de forma aleatoria
+        #create a random position on the board.
 
         x = random.randint(0, 9)
 
@@ -100,13 +103,13 @@ class Tablero: #definimos la posicion de los barcos de manera aleatoria, se espe
 
         return (x, y)
 
-    def coloca_barcos_random(self): #se encarga de colocar todos los barcos de forma aleatoria
+    def coloca_barcos_random(self): # it positions all the ships randomly
 
-        for propiedades in cs.TIPOS_BARCO:
+        for propiedades in cs.BOATS_TYPE:
 
             contador = 0
 
-            while contador < propiedades[1]: #comprobamos que tenemos barcos de acuerdo al tipo de barcos
+            while contador < propiedades[1]: #we check to see if we have ships according to list of boat types
 
                 posicion = self.posicion_random()
 
@@ -114,7 +117,7 @@ class Tablero: #definimos la posicion de los barcos de manera aleatoria, se espe
 
                 y = posicion[1]
 
-                slicing_sur = self.matriz[x: x + propiedades[0], y]   #comprobamos que la posicion de los barcos se ubiquen dentro del rango del tablero
+                slicing_sur = self.matriz[x: x + propiedades[0], y]   #we check that the position of the boats are placed within the range of the board.
 
                 slicing_norte = self.matriz[x: x - propiedades[0]:-1, y]
 
@@ -122,24 +125,24 @@ class Tablero: #definimos la posicion de los barcos de manera aleatoria, se espe
 
                 slicing_oeste = self.matriz[x, y:y - propiedades[0]:-1]
 
-                if cs.BARCO_CHAR not in slicing_sur and len(slicing_sur) == propiedades[0]:
+                if cs.BOAT_BOARD not in slicing_sur and len(slicing_sur) == propiedades[0]:
 
-                    self.matriz[x: x + propiedades[0], y] = cs.BARCO_CHAR
+                    self.matriz[x: x + propiedades[0], y] = cs.BOAT_BOARD
                     contador += 1
 
-                elif cs.BARCO_CHAR not in slicing_norte and len(slicing_norte) == propiedades[0]:
+                elif cs.BOAT_BOARD not in slicing_norte and len(slicing_norte) == propiedades[0]:
 
-                    self.matriz[x: x - propiedades[0]:-1, y] = cs.BARCO_CHAR
+                    self.matriz[x: x - propiedades[0]:-1, y] = cs.BOAT_BOARD
                     contador += 1
 
-                elif cs.BARCO_CHAR not in slicing_este and len(slicing_este) == propiedades[0]:
+                elif cs.BOAT_BOARD not in slicing_este and len(slicing_este) == propiedades[0]:
 
-                    self.matriz[x, y: y + propiedades[0]] = cs.BARCO_CHAR
+                    self.matriz[x, y: y + propiedades[0]] = cs.BOAT_BOARD
                     contador += 1
 
-                elif cs.BARCO_CHAR not in slicing_oeste and len(slicing_oeste) == propiedades[0]:
+                elif cs.BOAT_BOARD not in slicing_oeste and len(slicing_oeste) == propiedades[0]:
 
-                    self.matriz[x, y:y - propiedades[0]:-1] = cs.BARCO_CHAR
+                    self.matriz[x, y:y - propiedades[0]:-1] = cs.BOAT_BOARD
                     contador += 1
 
     def imprimir_tablero(self):
@@ -156,11 +159,11 @@ class Tablero: #definimos la posicion de los barcos de manera aleatoria, se espe
 
         if barco.axis == 0:
 
-            self.matriz[x:barco.largo + x, y] = cs.BARCO_CHAR
+            self.matriz[x:barco.largo + x, y] = cs.BOAT_BOARD
 
         else:
 
-            self.matriz[x, y:barco.largo + y] = cs.BARCO_CHAR
+            self.matriz[x, y:barco.largo + y] = cs.BOAT_BOARD
 
     def coloca_barcos(self):
 

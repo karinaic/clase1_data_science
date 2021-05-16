@@ -1,38 +1,41 @@
-##Aquí vamos a colocar todas nuestras variables que vamos a ir utilizando durante el juego, mensajes biemvenida, instrucciones,dimensiones de los barcos,etc.
-##4 barcos 2x1, 3b 3x1, 2b 4x1, 1b 5x1.
-#el diccionario Mensajes, lo he creado tambien en formato Json.
-MENSAJES = {
-    "introduccion": " **** Bienvenido al juego Battleship**** \
-        \nLe presentamos su flota: \
-        \n 1 Portador de 5x1 \
-        \n 2 Acorazados de 4x1 \
-        \n 3 Cruceros de 3x1 \
-        \n 2 Submarinos de 2x1 \
-        \n 2 Destructores de 2x2 ",
 
-    "reglas" :" A continuación le indicamos las reglas del juego: \
-        \n Coloque cada barco en cualquier posición horizontal o vertical pero no en diagonal \
-        \n No coloque un barco de modo que cualquier parte de él se superponga a otro barco o al  borde de la cuadrícula \
-        \n No se puede cambiar la posición del barco una vez empezado el juego. ",
 
-    "blanco" : "Me ha dado en el blanco, buen tiro!",
-    "fallo" :"Buen intento, pero has fallado, sigue intentando!",
-    "ganar" : "¡¡¡¡¡¡Has  GANADO!!!!! muy BIEN HECHO!! FELICITACIONES",
-    "perder": "Has PERDIDO, sigue intentando",
-    "adios": "      Fín del juego \
-        \n***Hasta la próxima***"
+## Here's where we will put all the variables we're going to use during the game: welcome messages, instructions, ship sizes, etc.
+##4 boats 2x1, 3b 3x1, 2b 4x1, 1b 5x1.
+#I also created the message dictionary in Json format.
+
+MESSAGES = {
+    "introduction": " **** Welcome to Battleship**** \
+        \n Here's your fleet: \
+        \n 1 carrier (5x1) \
+        \n 2 Battleships (4x1) \
+        \n 3 Frigates (3x1) \
+        \n 2 Submarines (2x1) \
+        \n 2 Destroyers (2x2)",
+
+    "Rules":" Below we explain the rules of the game: \
+        \n Place each ship in any horizontal or vertical position but not diagonally \
+        \n Do not place the ships so that they overlap another ship or the edge of the grid \
+        \n You cannot change the position of the ship once the game has started. ",
+
+    "Hit": "You hit me, great shot!",
+    "Miss": "Nice try, but you missed. Better luck next time!",
+    "win" : "¡¡¡¡¡¡You WON!!!!! Great job!! CONGRATULATIONS",
+    "lose": "You LOST, keep trying",
+    "goodbye": "      GAME OVER\
+        \n***See you soon***"
 }
 
-LISTA_CARACTERES = ['A','B','C','D','E','F','G','H','I','J'] #Sirve para traducir la posición de la letra a indice del tablero y para dibujar las referencias en la interfaz
+LIST_CHARACTERS = ['A','B','C','D','E','F','G','H','I','J'] #It is used to translate the position of the letter to the board index and draw the references on the interface
 
-LISTA_NUMEROS = [1,2,3,4,5,6,7,8,9,10] # Sirve para traducir la posición del número a indice del tablero y para dibujar las referencias en la interfaz
+LIST_NUMBERS = [1,2,3,4,5,6,7,8,9,10] # It is used to translate the position of the number to the board index and draw the references on the interface
 
-TIPOS_BARCO = [(4, 2), (3, 3), (2, 4), (1, 5)] #guarda un listado de tuplas con el eslora del barco y el número que hay que dibujar
+BOATS_TYPE = [(4, 2), (3, 3), (2, 4), (1, 5)] #saves a list of tuples with the length of the board and the number that has to be represented
 
-BARCO_CHAR= "#"
+BOAT_BOARD= "#"
 
-AGUA_CHAR = "~"
+WATER_BOARD = "~"
 
-TOCADO_CHAR = "X"
+HIT_BOARD = "X"
 
-FALLO_CHAR = "Ø"
+MISS_BOARD = "Ø"
