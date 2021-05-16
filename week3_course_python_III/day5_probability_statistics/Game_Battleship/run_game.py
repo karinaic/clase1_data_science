@@ -1,19 +1,30 @@
-from Clases import *
+
+#Importamos librerias
+import numpy as np 
 import random
-import Constantes as cs
 from time import sleep
 from tqdm import tqdm
 
+#importamos módulos propios
+from Clases import *
+import Constantes as cs
+from time import sleep
+from tqdm import tqdm
+from Constantes import MENSAJES
 
-def posicion_random():
+
+def posicion_random(): #crea una posición en un tablero de 10 x 10 de fila-letra
 
     x = random.randint(1, 10)
     y = cs.LISTA_CARACTERES[random.randint(0, 9)]
 
     return (x, y)
 
-
-def lee_input(jugador, posicion):
+#interpretamos las coordenadas introducidas por el jugador
+def lee_input(jugador, posicion): 
+    #se le pasa como parámetros un jugador y una posición. este método comprueba la validez del disparo,
+    #no debe de haber disparado en esa misma posición y 
+    # tiene que estar bien construido para que identifique una posición real del tablero
 
     resp = None
 
@@ -42,30 +53,19 @@ es_maquina = False
 
 salir = False
 
+#nuestros jugadores
+#llamamos a la clase Jugador
 jugador_1 = Jugador()
 
 jugador_2 = Jugador()
 
-print("Bienvenido al juego HUNDIR LA FLOTA")
+#introducimos mensaje Bienvenida
 
-print("                  __--___\n\
-                 >_--__ \n\
-                _________!__________\n\
-               /   /   /   /   /   /\n\
-              /   /   /   /   /   /\n\
-             |   |   |   |   |   |\n\
-        __^  |   |   |   |   |   |\n\
-      _/@  \  \   \   \   \   \   \ \n\
-     S__   |   \   \   \   \   \   \         ___ \n\
-       |  |    \___\___\___\___\___\       /   \ \n\
-        |   \             |                |  |\|\n\
-        \    \____________!________________/  /\n\
-         \ _________HUNDIR LA FLOTA__________/\n\
-          \________BY ""KARINA &  MARYCRUZ""_________/\n\
-%%%^^^^^%%%%%^^^^!!^%%^^^^%%%%%!!!!^^^^^^!%^^^%%%%!!^^\n\
-^^!!!!%%%%^^^^!!^^%%%%%^^!!!^^%%%%%!!!%%%%^^^!!^^%%%!\n")
+print(MENSAJES["introduccion"])
 
 sleep(0.5)
+
+#introduciomos los símbolos a los que hacer referencia las marcas en el tablero
 
 print("Los símbolos '~' hacen referncia al agua")
 
@@ -75,26 +75,34 @@ print("El símbolo 'Ø' hace referencia a un disparo fallido")
 
 sleep(0.5)
 
-print("El símbolo '#' hace referencia a un barco tocado")
+print("El símbolo 'X' hace referencia a un barco tocado")
 
 sleep(0.5)
 
-print("CARGANDO...")
+#introducimos las reglas del juego
+print(MENSAJES["reglas"])
+
+sleep(0.5)
+
+print("           ARE YOU READY????....CARGANDO...\n ")
 for i in tqdm(range(10)):
     sleep(0.5)
 
 input("Presiona enter para continuar")
 
-while jugador_1.vidas > 0 and jugador_2.vidas > 0 :
+#instanciamos el juego
+
+while jugador_1.vidas > 0 and jugador_2.vidas > 0 : #comprobamos que alguno de los dos aun tiene vidas
     
     if not es_maquina:
         jugador_1.imprimir_tablero()
-        #jugador_2.imprimir_tablero()#visualiza el tablero de la máquina, para coprobar que funciona
+        
         while True:
-            print("SALIR = 0")
-            posicion = str(input("Introduzca la coordenada a la que desea diparar (ej. 10f): "))
+            print("Si deseas abandonar el juego sólo tienes que presionar = 0")
+            posicion = str(input("Introduzca la coordenada a la que desea diparar: filas de 1 a 10 y columnas de A - J  \
+                \nEjemplo: 1A ------->Intentelo aquí:  "))
 
-            tupla_posicion = lee_input(jugador_1, posicion)
+            tupla_posicion = lee_input(jugador_1, posicion) #llamamos a la funcion que nos devuelve el imput con la coordenada ingresada por el jugador
 
             if tupla_posicion != None:
 
@@ -103,13 +111,13 @@ while jugador_1.vidas > 0 and jugador_2.vidas > 0 :
             else:
                 print ("Entrada no válida")
 
-        if tupla_posicion == 0:
+        if tupla_posicion == 0: #se acaba el juego, no se quiere seguir jugando
 
             salir = True
 
             break
 
-        resultado = jugador_1.disparar(tupla_posicion, jugador_2)
+        resultado = jugador_1.disparar(tupla_posicion, jugador_2) #comprobamos el tiro
 
         if resultado:
 
@@ -130,7 +138,7 @@ while jugador_1.vidas > 0 and jugador_2.vidas > 0 :
 
         apuntar = False
 
-        while not apuntar:
+        while not apuntar: #toca turno al oponente
 
             tupla_posicion = posicion_random()
 
@@ -147,12 +155,12 @@ while jugador_1.vidas > 0 and jugador_2.vidas > 0 :
 
         if not resultado:
 
-            print("Tu rival no ha acertado!!, se pasa el turno al jugador: ")
+            print(MENSAJES["fallo"] +" se pasa el turno al jugador: ")
 
             es_maquina = False
 
         else:
-            print("OOooops te han dado, le toca tirar de nuevo")
+            print(MENSAJES["blanco"] + " le toca tirar de nuevo")
 
             es_maquina = True
 
@@ -160,12 +168,12 @@ while jugador_1.vidas > 0 and jugador_2.vidas > 0 :
 
 if es_maquina and not salir:
 
-    print("Has perdido!!! Más suerte la próxima!!!")
+    print(MENSAJES["perder"])
 
 elif not es_maquina and not salir:
 
-    print("¡ENHORABUENA!, HAS GANADO")
+    print(MENSAJES["ganar"])
 
 elif salir:
 
-    print("Fin del juego")
+    print(MENSAJES["adios"])

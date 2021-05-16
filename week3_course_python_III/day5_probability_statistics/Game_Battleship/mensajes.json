@@ -1,0 +1,9 @@
+{
+    "introduccion": " **** Bienvenido al juego Battleship****         \nLe presentamos su flota:         \n 1 Portador de 5x1         \n 2 Acorazados de 4x1         \n 3 Cruceros de 3x1         \n 2 Submarinos de 2x1         \n 2 Destructores de 2x2 ",
+    "reglas": " A continuaci\u00f3n le indicamos las reglas del juego:         \n Coloque cada barco en cualquier posici\u00f3n horizontal o vertical pero no en diagonal         \n No coloque un barco de modo que cualquier parte de \u00e9l se superponga a otro barco o al  borde de la cuadr\u00edcula         \n No se puede cambiar la posici\u00f3n del barco una vez empezado el juego. ",
+    "blanco": "Me ha dado en el blanco, buen tiro!",
+    "fallo": "Buen intento, pero has fallado, sigue intentando!",
+    "ganar": "\u00a1\u00a1\u00a1\u00a1\u00a1\u00a1Has  GANADO!!!!! muy BIEN HECHO!! FELICITACIONES",
+    "perder": "Has PERDIDO, sigue intentando",
+    "adios": "      F\u00edn del juego         \n***Hasta la pr\u00f3xima***"
+}

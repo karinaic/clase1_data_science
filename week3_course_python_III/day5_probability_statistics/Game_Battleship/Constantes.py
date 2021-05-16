@@ -1,6 +1,6 @@
 ##Aquí vamos a colocar todas nuestras variables que vamos a ir utilizando durante el juego, mensajes biemvenida, instrucciones,dimensiones de los barcos,etc.
 ##4 barcos 2x1, 3b 3x1, 2b 4x1, 1b 5x1.
-
+#el diccionario Mensajes, lo he creado tambien en formato Json.
 MENSAJES = {
     "introduccion": " **** Bienvenido al juego Battleship**** \
         \nLe presentamos su flota: \
@@ -16,17 +16,18 @@ MENSAJES = {
         \n No se puede cambiar la posición del barco una vez empezado el juego. ",
 
     "blanco" : "Me ha dado en el blanco, buen tiro!",
-    "fallo" :"Buen intento, pero ha fallado, sigue intentando!",
+    "fallo" :"Buen intento, pero has fallado, sigue intentando!",
     "ganar" : "¡¡¡¡¡¡Has  GANADO!!!!! muy BIEN HECHO!! FELICITACIONES",
     "perder": "Has PERDIDO, sigue intentando",
-    "adios": "***Hasta la próxima***"
+    "adios": "      Fín del juego \
+        \n***Hasta la próxima***"
 }
 
-LISTA_CARACTERES = ['A','B','C','D','E','F','G','H','I','J']
+LISTA_CARACTERES = ['A','B','C','D','E','F','G','H','I','J'] #Sirve para traducir la posición de la letra a indice del tablero y para dibujar las referencias en la interfaz
 
-LISTA_NUMEROS = [1,2,3,4,5,6,7,8,9,10]
+LISTA_NUMEROS = [1,2,3,4,5,6,7,8,9,10] # Sirve para traducir la posición del número a indice del tablero y para dibujar las referencias en la interfaz
 
-TIPOS_BARCO = [(4, 2), (3, 3), (2, 4), (1, 5)]
+TIPOS_BARCO = [(4, 2), (3, 3), (2, 4), (1, 5)] #guarda un listado de tuplas con el eslora del barco y el número que hay que dibujar
 
 BARCO_CHAR= "#"
 
