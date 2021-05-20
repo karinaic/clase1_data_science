@@ -1,0 +1,21 @@
+﻿Tamaño de las explotaciones según SAU (Ha.);Explotaciones/Ha.;Total
+Explotaciones con SAU;Explotaciones;1.078
+Explotaciones con SAU;Ha.;16.012
+< 1;Explotaciones;..
+< 1;Ha.;0
+1  a < 2;Explotaciones;9
+1  a < 2;Ha.;13
+2 a < 5;Explotaciones;16
+2 a < 5;Ha.;48
+5 a <  10;Explotaciones;211
+5 a <  10;Ha.;493
+10 a < 20;Explotaciones;178
+10 a < 20;Ha.;1.160
+20 a < 30;Explotaciones;13
+20 a < 30;Ha.;113
+30 a < 50;Explotaciones;151
+30 a < 50;Ha.;1.711
+50 a < 100;Explotaciones;236
+50 a < 100;Ha.;3.934
+>=100;Explotaciones;265
+>=100;Ha.;8.541
