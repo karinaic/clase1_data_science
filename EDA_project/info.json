@@ -1,0 +1,6 @@
+{"project_name": "Exploratory Data Analysis Global Vaccination SARS-CoV-2 (Covid19)",
+"author": "Karina Inche Cisneros", "linkedin": "", 
+"e_mail": "karinainche@gmail.com", 
+"project_title": "Exploratory Data Analysis Global Vaccination SARS-CoV-2 (Covid19)",
+"project_description": "Analizar el ritmo de vacunacion a nivel mundial,cuales son los paises que mas han vacunado con la pauta completa o con una sola dosis y que vacunas han sido las más utilizadas por los paises.",
+"flask_port": 6060, "streamlit_port": 8501, "python_libraries_used" : ["streamlit", "pandas", "numpy", "flask" , "Quickda", "request"]}

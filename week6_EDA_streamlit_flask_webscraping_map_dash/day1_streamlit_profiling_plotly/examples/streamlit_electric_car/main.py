@@ -1,7 +1,7 @@
 import streamlit as st
 import functions as ft
 import os
-
+#NO TOCAR ES DE CLASE
     
 path = os.path.dirname(__file__)
 
